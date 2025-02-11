@@ -1,0 +1,42 @@
+import mongoose from "mongoose";
+const userSchema = new mongoose.Schema({
+    username:{
+        type:String,
+        required:true,
+        unique:true,
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true,
+    },
+    password:{
+        type:String,
+        required:true,
+    },
+    roles:{
+        type:[String],
+        default:["user"]
+    },
+    profiles:{
+        firstName:{
+            type: String,
+            trim:true,
+        },
+        lastname:{
+            type:String,
+            trim:true,
+        },
+        age:{
+            type:Number,
+            min:0,
+        }
+    },
+    lastlogin:{
+        type:Date,
+        default:Date.now(),
+    },
+},{
+    timestamps:true
+});
+module.exports=mongoose.Schema("User",userSchema);
